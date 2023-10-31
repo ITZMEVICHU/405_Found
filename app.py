@@ -93,26 +93,35 @@ if menu_selection == "Problem Statement":
 
 elif menu_selection == "Visualization":
     # Visualization section
-    st.header("Visualization")
-    st.write("This section provides visualizations based on the features tested.")
-    st.subheader("Upload Testing Data:")
-    uploaded_test_file = st.file_uploader("Upload a CSV file for testing:", type=["csv"])
-    test_data = pd.read_csv(uploaded_test_file)
-    # Add visualization code here
-    import matplotlib.pyplot as plt
+    st.header("Visualizations")
 
-    if 'test_data' in locals():  # Check if test_data is defined
-        # Example scatter plot
+    # Upload Testing Data for Visualizations
+    uploaded_test_file = st.file_uploader("Upload a CSV file for testing:", type=["csv"])
+
+    if uploaded_test_file is not None:
+        test_data = pd.read_csv(uploaded_test_file)
+
+        # Scatter plot
+        st.subheader("Scatter Plot")
+        st.write("Scatter plot showing Earnings vs. Spending Limit")
         plt.figure(figsize=(8, 6))
-        plt.scatter(test_data['earnings'], test_data['predicted_spending_limit'], label="Predicted Spending Limit", color='blue')
-        plt.scatter(test_data['earnings'], test_data['spending_limit'], label="Actual Spending Limit", color='red', marker='x')
+        plt.scatter(test_data['earnings'], test_data['spending_limit'], label="Spending Limit", color='blue', alpha=0.7)
         plt.xlabel("Earnings")
         plt.ylabel("Spending Limit")
         plt.title("Earnings vs. Spending Limit")
-        plt.legend()
-
-        # Display the plot in Streamlit
         st.pyplot(plt)
+
+        # Bar chart
+        st.subheader("Bar Chart")
+        st.write("Bar chart showing Spending Limit by Credit Score")
+        bar_data = test_data.groupby('CreditScore')['spending_limit'].mean()
+        st.bar_chart(bar_data)
+
+        # Line chart
+        st.subheader("Line Chart")
+        st.write("Line chart showing Earnings vs. Earning Potential")
+        line_data = test_data[['earnings', 'earning_potential']]
+        st.line_chart(line_data)
     else:
         st.warning("Please upload and process testing data to generate visualizations.")
     # You can add your visualizations here.
