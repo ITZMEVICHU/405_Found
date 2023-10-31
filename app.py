@@ -4,6 +4,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 import matplotlib.pyplot as plt
+import plotly.express as px
 
 # Add a title and logo
 st.set_page_config(
@@ -133,14 +134,17 @@ elif menu_selection == "Visualization":
         plt.title("Spending Limit Histogram")
         st.pyplot(plt)
 
-        # Pie chart
+        # Pie chart using Plotly
+
+
         st.subheader("Pie Chart")
         st.write("Pie chart showing Distribution of Spending Limit Categories")
-        pie_data = test_data['spending_limit'].value_counts()
-        fig, ax = plt.subplots()
-        ax.pie(pie_data, labels=pie_data.index, autopct='%1.1f%%', startangle=90)
-        ax.axis('equal')  # Equal aspect ratio ensures the pie chart is circular.
-        st.pyplot(fig)
+        pie_data = test_data['spending_limit'].value_counts().reset_index()
+        pie_data.columns = ['Spending Limit', 'Count']
+
+        fig = px.pie(pie_data, values='Count', names='Spending Limit', title='Distribution of Spending Limit Categories')
+        st.plotly_chart(fig)
+
     else:
         st.warning("Please upload and process training data to generate visualizations.")
     # You can add your visualizations here.
