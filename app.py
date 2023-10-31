@@ -4,6 +4,16 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 import matplotlib.pyplot as plt
+
+# Add a title and logo
+st.set_page_config(
+    page_title="Spending Limit Predictor",
+    page_icon="🛒",  # You can use a custom icon or emoji here
+)
+
+# Display the logo
+st.image("logo.png", use_container_width=True)  
+
 # Title and description
 st.title("Spending Limit Predictor")
 st.write("This app predicts spending limits based on different sets of features.")
