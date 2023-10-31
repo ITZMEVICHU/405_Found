@@ -21,7 +21,6 @@ st.write("This app predicts spending limits based on different sets of features.
 
 # Create a sidebar for the menu
 menu_selection = st.sidebar.selectbox("Menu", ["Problem Statement", "ROI", "Visualization"])
-chart_selection = st.sidebar.selectbox("Select Chart Type", ["None", "Scatter Plot", "Bar Chart", "Line Chart", "Histogram"])
 
 if menu_selection == "Problem Statement":
     # Problem Statement section
@@ -92,6 +91,7 @@ if menu_selection == "Problem Statement":
             y_train, y_test = train_test_split(y_true, test_size=0.2, random_state=0)
             y_test_pred = model.predict(X_test)
 
+
 elif menu_selection == "Visualization":
     # Visualization section
     st.header("Visualizations (upload the training data file)")
@@ -101,6 +101,9 @@ elif menu_selection == "Visualization":
 
     if uploaded_test_file is not None:
         test_data = pd.read_csv(uploaded_test_file)
+
+        # Chart selection dropdown
+        chart_selection = st.selectbox("Select Chart Type", ["None", "Scatter Plot", "Bar Chart", "Line Chart", "Histogram"])
 
         if chart_selection == "Scatter Plot" or chart_selection == "None":
             # Scatter plot
@@ -137,7 +140,6 @@ elif menu_selection == "Visualization":
             plt.ylabel("Frequency")
             plt.title("Spending Limit Histogram")
             st.pyplot(plt)
-
 
         
     else:
