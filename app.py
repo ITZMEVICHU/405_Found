@@ -21,17 +21,15 @@ if uploaded_train_file is not None:
     # Select features using a dropdown input
     selected_features = st.selectbox(
         "Select Features for Modeling:",
-        ("Earnings", "Spending Limit", "Savings", "All Features")
+        ("Earnings and Earning potential", "Earnings and Savings", "Earnings and CreditScore")
     )
 
-    if selected_features == "Earnings":
-        features = ['earnings']
-    elif selected_features == "Spending Limit":
-        features = ['spending_limit']
-    elif selected_features == "Savings":
-        features = ['Savings']
-    else:
-        features = ['earnings', 'spending_limit', 'Savings']
+    if selected_features == "Earnings and Earning potential":
+        features = ['earnings', 'earning_potential']
+    elif selected_features == "Earnings and Savings":
+        features = ['earnings', 'Savings']
+    elif selected_features == "Earnings and CreditScore":
+        features = ['earnings', 'CreditScore']
 
     X = train_data[features]
     y = train_data['spending_limit']
@@ -66,8 +64,3 @@ if uploaded_train_file is not None:
         y_train, y_test = train_test_split(y_true, test_size=0.2, random_state=0)
         y_test_pred = model.predict(X_test)
 
-        mse = mean_squared_error(y_test, y_test_pred)
-        r2 = r2_score(y_test, y_test_pred)
-
-        st.write(f"Mean Squared Error (MSE): {mse}")
-        st.write(f"R-squared (R2): {r2}")
