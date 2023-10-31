@@ -137,7 +137,10 @@ elif menu_selection == "Visualization":
         st.subheader("Pie Chart")
         st.write("Pie chart showing Distribution of Spending Limit Categories")
         pie_data = test_data['spending_limit'].value_counts()
-        st.pie(pie_data, labels=pie_data.index, autopct='%1.1f%%')
+        fig, ax = plt.subplots()
+        ax.pie(pie_data, labels=pie_data.index, autopct='%1.1f%%', startangle=90)
+        ax.axis('equal')  # Equal aspect ratio ensures the pie chart is circular.
+        st.pyplot(fig)
     else:
         st.warning("Please upload and process training data to generate visualizations.")
     # You can add your visualizations here.
