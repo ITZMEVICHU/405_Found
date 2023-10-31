@@ -92,33 +92,26 @@ if menu_selection == "Problem Statement":
             y_test_pred = model.predict(X_test)
 
 elif menu_selection == "ROI":
-    # ROI prediction and analysis section
-    st.header("ROI Prediction and Analysis")
-    
-    # Upload a CSV file with ROI-related data
-    uploaded_roi_data = st.file_uploader("Upload a CSV file with ROI-related data:", type=["csv"])
+    # ROI section
+    st.header("Return on Investment (ROI)")
 
-    if uploaded_roi_data is not None:
-        roi_data = pd.read_csv(uploaded_roi_data)
-        
-        # Calculate ROI based on predicted spending limits and other relevant data
-        if 'predicted_spending_limit' in roi_data:
-            roi_data['ROI'] = (roi_data['predicted_spending_limit'] - roi_data['Cost']) / roi_data['Cost']
-        
-        st.subheader("ROI Data")
+    # Upload ROI-related data
+    uploaded_roi_file = st.file_uploader("Upload a CSV file for ROI analysis:", type=["csv"])
+    
+    if uploaded_roi_file is not None:
+        roi_data = pd.read_csv(uploaded_roi_file)
+        st.write("Uploaded ROI Data:")
         st.write(roi_data)
         
-        # Further analysis and visualization
-        st.subheader("ROI Analysis")
+        if 'ROI' in roi_data.columns:
+            average_roi = roi_data['ROI'].mean()
+            st.write(f"Average ROI: {average_roi:.2%}")
+        else:
+            st.write("ROI column not found in the uploaded data. Please make sure the CSV file contains a 'ROI' column.")
         
-        # Example: Calculate average ROI
-        average_roi = roi_data['ROI'].mean()
-        st.write(f"Average ROI: {average_roi:.2%}")
+    else:
+        st.warning("Please upload ROI-related data to perform ROI analysis.")
         
-        # Example: ROI visualization (bar chart)
-        st.subheader("ROI Visualization")
-        st.bar_chart(roi_data.groupby('Product')['ROI'].mean())
-
 elif menu_selection == "Visualization":
     # Visualization section
     st.header("Visualizations (upload the training data file)")
