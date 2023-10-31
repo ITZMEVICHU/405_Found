@@ -12,17 +12,6 @@ st.set_page_config(
 )
 
 # Display the logo
-st.markdown(
-    """
-    <style>
-    div.stButton > button {
-        display: block;
-        margin: 0 auto;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
 st.image("logo.png")
 
 # Title and description
