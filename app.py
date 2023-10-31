@@ -8,6 +8,13 @@ from sklearn.metrics import mean_squared_error, r2_score
 st.title("Spending Limit Predictor")
 st.write("This app predicts spending limits based on earnings and earning potential.")
 
+
+with col2:
+        vAR_input_problem_type = st.selectbox(' ',['Select the Problem Statement','Customer Churn: Who is going to churn?','Customer Churn: When will the churn occur?','Customer Churn: Why does the churn occurs?'])
+    if vAR_input_problem_type == 'Customer Churn: Who is going to churn?':
+        with col1:
+            st.write("## ")
+            st.markdown("<p style='text-align: left; color: black; font-size:20px;'><span style='font-weight: bold'>Problem type</span></p>", unsafe_allow_html=True)
 # Upload a CSV file for training
 st.subheader("Upload Training Data:")
 uploaded_train_file = st.file_uploader("Upload a CSV file for training:", type=["csv"])
