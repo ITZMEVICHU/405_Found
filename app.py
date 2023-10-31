@@ -24,7 +24,7 @@ menu_selection = st.sidebar.selectbox("Menu", ["Problem Statement", "ROI", "Visu
 
 if menu_selection == "Problem Statement":
     # Problem Statement section
-  st.header("Problem Statement")
+    st.header("Problem Statement")
     st.markdown(
         """
         <div style="text-align: justify; text-justify: inter-word;">
