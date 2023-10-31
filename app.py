@@ -24,13 +24,16 @@ menu_selection = st.sidebar.selectbox("Menu", ["Problem Statement", "ROI", "Visu
 
 if menu_selection == "Problem Statement":
     # Problem Statement section
-    st.header("Problem Statement")
+  st.header("Problem Statement")
     st.markdown(
         """
-        <p style="text-align: justify;">Marketing managers at a retail company wanted to develop a targeted marketing plan and demonstrate a return on investment (ROI) for their marketing spend. To predict the customer's spending limit based on their earnings and earning potential, the marketing team turned to their data science team for a machine learning application (MLOps). In a meeting with the management team of the retail company, it was suggested that the machine learning model be trained and tested with a variety of data sets as needed.</p>
+        <div style="text-align: justify; text-justify: inter-word;">
+        Marketing managers at a retail company wanted to develop a targeted marketing plan and demonstrate a return on investment (ROI) for their marketing spend. To predict the customer's spending limit based on their earnings and earning potential, the marketing team turned to their data science team for a machine learning application (MLOps). In a meeting with the management team of the retail company, it was suggested that the machine learning model be trained and tested with a variety of data sets as needed.
 
-        <p style="text-align: justify;">As a result, business users should be able to upload training data to MLOps and select features through the user interface (UI). Users should also be able to upload and preview test data to test the model. Explanations AI functionality should be implemented by MLOps to help business users understand what the model outcomes mean. To simplify and better understand model outcomes, business users requested visual data analysis functionality.</p>
-        """
+        As a result, business users should be able to upload training data to MLOps and select features through the user interface (UI). Users should also be able to upload and preview test data to test the model. Explanations AI functionality should be implemented by MLOps to help business users understand what the model outcomes mean. To simplify and better understand model outcomes, business users requested visual data analysis functionality.
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
     
     st.subheader("Upload Training Data:")
