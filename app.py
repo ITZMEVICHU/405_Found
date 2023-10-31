@@ -12,7 +12,8 @@ st.set_page_config(
 )
 
 # Display the logo
-st.image("logo.png", use_container_width=True)  
+st.image("logo.png", use_container_width=True)
+
 
 # Title and description
 st.title("Spending Limit Predictor")
