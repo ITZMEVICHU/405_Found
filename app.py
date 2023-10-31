@@ -6,8 +6,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 
 # Title and description
 st.title("Spending Limit Predictor")
-st.write("This app predicts spending limits based on earnings and earning potential.")
-
+st.write("This app predicts spending limits based on different sets of features.")
 
 # Upload a CSV file for training
 st.subheader("Upload Training Data:")
@@ -19,10 +18,25 @@ if uploaded_train_file is not None:
     train_data = pd.read_csv(uploaded_train_file)
     st.write(train_data)
 
-    # Training the model
-    X = train_data[['earnings', 'earning_potential']]
+    # Select features using a dropdown input
+    selected_features = st.selectbox(
+        "Select Features for Modeling:",
+        ("Earnings", "Spending Limit", "Savings", "All Features")
+    )
+
+    if selected_features == "Earnings":
+        features = ['earnings']
+    elif selected_features == "Spending Limit":
+        features = ['spending_limit']
+    elif selected_features == "Savings":
+        features = ['Savings']
+    else:
+        features = ['earnings', 'spending_limit', 'Savings']
+
+    X = train_data[features]
     y = train_data['spending_limit']
-    
+
+    # Training the model
     model = RandomForestRegressor()
     model.fit(X, y)
 
@@ -37,7 +51,7 @@ if uploaded_train_file is not None:
         st.write(test_data)
 
         # Predict spending limits for testing data
-        X_test = test_data[['earnings', 'earning_potential']]
+        X_test = test_data[features]
         y_pred = model.predict(X_test)
 
         # Add predictions to the testing data
@@ -51,6 +65,7 @@ if uploaded_train_file is not None:
         y_true = train_data['spending_limit']
         y_train, y_test = train_test_split(y_true, test_size=0.2, random_state=0)
         y_test_pred = model.predict(X_test)
+
         mse = mean_squared_error(y_test, y_test_pred)
         r2 = r2_score(y_test, y_test_pred)
 
