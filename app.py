@@ -137,7 +137,9 @@ elif menu_selection == "Visualization":
         st.subheader("Heatmap")
         st.write("Heatmap showing correlations between features")
         corr_matrix = test_data.corr()
-        st.write(corr_matrix)
+        plt.figure(figsize=(10, 8))
+        sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f")
+        st.pyplot()
         
     else:
         st.warning("Please upload and process training data to generate visualizations.")
