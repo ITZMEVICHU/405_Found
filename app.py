@@ -105,7 +105,7 @@ elif menu_selection == "Visualization":
         # Chart selection dropdown
         chart_selection = st.selectbox("Select Chart Type", ["None", "Scatter Plot", "Bar Chart", "Line Chart", "Histogram"])
 
-        if chart_selection == "Scatter Plot" or chart_selection == "None":
+        if chart_selection == "Scatter Plot":
             # Scatter plot
             st.subheader("Scatter Plot")
             st.write("Scatter plot showing Earnings vs. Spending Limit")
@@ -116,21 +116,21 @@ elif menu_selection == "Visualization":
             plt.title("Earnings vs. Spending Limit")
             st.pyplot(plt)
 
-        if chart_selection == "Bar Chart" or chart_selection == "None":
+        if chart_selection == "Bar Chart":
             # Bar chart
             st.subheader("Bar Chart")
             st.write("Bar chart showing Spending Limit by Credit Score")
             bar_data = test_data.groupby('CreditScore')['spending_limit'].mean()
             st.bar_chart(bar_data)
 
-        if chart_selection == "Line Chart" or chart_selection == "None":
+        if chart_selection == "Line Chart":
             # Line chart
             st.subheader("Line Chart")
             st.write("Line chart showing Earnings vs. Earning Potential")
             line_data = test_data[['earnings', 'earning_potential']]
             st.line_chart(line_data)
 
-        if chart_selection == "Histogram" or chart_selection == "None":
+        if chart_selection == "Histogram":
             # Histogram
             st.subheader("Histogram")
             st.write("Histogram of Spending Limit")
