@@ -133,69 +133,6 @@ elif menu_selection == "Visualization":
         plt.title("Spending Limit Histogram")
         st.pyplot(plt)
 
-
-        # Heatmaps
-        st.subheader("Heatmaps")
-        st.write("Heatmap showing correlations between features")
- 
-        # Calculate correlation matrix
-        corr_matrix = test_data.corr()
-
-        # Display the correlation matrix heatmap
-        st.write(
-           "Correlation Matrix Heatmap:",
-           px.imshow(corr_matrix)
-        )
-
-        # Product Profits
-        st.subheader("Product Profits")
-        st.write("Product profits analysis")
-
-        # Calculate product profits by product category
-        product_profits = test_data.groupby('Product')['spending_limit'].sum()
-
-        # Display a bar chart for product profits
-        st.bar_chart(product_profits)
-
-        # Gender Analysis
-        st.subheader("Gender Analysis")
-        st.write("Gender analysis")
-
-        # Calculate gender distribution
-        gender_analysis = test_data['Gender'].value_counts()
-
-        # Display a bar chart for gender analysis
-        st.bar_chart(gender_analysis)
-
-        # Age Group Analysis
-        st.subheader("Age Group Analysis")
-        st.write("Age group analysis")
-
-        # Create age groups (you can customize the age group bins)
-        bins = [20, 30, 40, 50, 60, 100]
-        age_labels = ["21-30", "31-40", "41-50", "51-60", "61+"]
-        test_data['Age Group'] = pd.cut(test_data['Age'], bins=bins, labels=age_labels)
-
-        # Calculate age group distribution
-        age_group_analysis = test_data['Age Group'].value_counts()
-
-        # Display a bar chart for age group analysis
-        st.bar_chart(age_group_analysis)
-
-        # Earnings Analysis
-        st.subheader("Earnings Analysis")
-        st.write("Earnings analysis")
-
-        # Calculate mean earnings by education level
-        earnings_analysis = test_data.groupby('Product')['earnings'].mean()
-
-        # Display a bar chart for earnings analysis
-        st.bar_chart(earnings_analysis)
-
-
-
-      
-
     else:
         st.warning("Please upload and process training data to generate visualizations.")
     # You can add your visualizations here.
