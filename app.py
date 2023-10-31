@@ -122,6 +122,22 @@ elif menu_selection == "Visualization":
         st.write("Line chart showing Earnings vs. Earning Potential")
         line_data = test_data[['earnings', 'earning_potential']]
         st.line_chart(line_data)
+
+        # Histogram
+        st.subheader("Histogram")
+        st.write("Histogram of Spending Limit")
+        plt.figure(figsize=(8, 6))
+        plt.hist(test_data['spending_limit'], bins=20, color='green', alpha=0.7)
+        plt.xlabel("Spending Limit")
+        plt.ylabel("Frequency")
+        plt.title("Spending Limit Histogram")
+        st.pyplot(plt)
+
+        # Pie chart
+        st.subheader("Pie Chart")
+        st.write("Pie chart showing Distribution of Spending Limit Categories")
+        pie_data = test_data['spending_limit'].value_counts()
+        st.pie(pie_data, labels=pie_data.index, autopct='%1.1f%%')
     else:
         st.warning("Please upload and process training data to generate visualizations.")
     # You can add your visualizations here.
