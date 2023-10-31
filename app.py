@@ -15,7 +15,7 @@ st.set_page_config(
 st.markdown(
     """
     <div style="display: flex; justify-content: center;">
-        <img src="logo.png" alt="Logo" width="200">
+        <img src='logo.png' alt="Logo" width="200">
     </div>
     """,
     unsafe_allow_html=True,
