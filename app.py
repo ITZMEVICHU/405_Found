@@ -133,6 +133,12 @@ elif menu_selection == "Visualization":
         plt.title("Spending Limit Histogram")
         st.pyplot(plt)
 
+        # Heatmap
+        st.subheader("Heatmap")
+        st.write("Heatmap showing correlations between features")
+        corr_matrix = test_data.corr()
+        st.write(corr_matrix)
+        
     else:
         st.warning("Please upload and process training data to generate visualizations.")
     # You can add your visualizations here.
