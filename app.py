@@ -21,6 +21,7 @@ st.write("This app predicts spending limits based on different sets of features.
 
 # Create a sidebar for the menu
 menu_selection = st.sidebar.selectbox("Menu", ["Problem Statement", "ROI", "Visualization"])
+chart_selection = st.sidebar.selectbox("Select Chart Type", ["None", "Scatter Plot", "Bar Chart", "Line Chart", "Histogram"])
 
 if menu_selection == "Problem Statement":
     # Problem Statement section
@@ -101,37 +102,41 @@ elif menu_selection == "Visualization":
     if uploaded_test_file is not None:
         test_data = pd.read_csv(uploaded_test_file)
 
-        # Scatter plot
-        st.subheader("Scatter Plot")
-        st.write("Scatter plot showing Earnings vs. Spending Limit")
-        plt.figure(figsize=(8, 6))
-        plt.scatter(test_data['earnings'], test_data['spending_limit'], label="Spending Limit", color='blue', alpha=0.7)
-        plt.xlabel("Earnings")
-        plt.ylabel("Spending Limit")
-        plt.title("Earnings vs. Spending Limit")
-        st.pyplot(plt)
+        if chart_selection == "Scatter Plot" or chart_selection == "None":
+            # Scatter plot
+            st.subheader("Scatter Plot")
+            st.write("Scatter plot showing Earnings vs. Spending Limit")
+            plt.figure(figsize=(8, 6))
+            plt.scatter(test_data['earnings'], test_data['spending_limit'], label="Spending Limit", color='blue', alpha=0.7)
+            plt.xlabel("Earnings")
+            plt.ylabel("Spending Limit")
+            plt.title("Earnings vs. Spending Limit")
+            st.pyplot(plt)
 
-        # Bar chart
-        st.subheader("Bar Chart")
-        st.write("Bar chart showing Spending Limit by Credit Score")
-        bar_data = test_data.groupby('CreditScore')['spending_limit'].mean()
-        st.bar_chart(bar_data)
+        if chart_selection == "Bar Chart" or chart_selection == "None":
+            # Bar chart
+            st.subheader("Bar Chart")
+            st.write("Bar chart showing Spending Limit by Credit Score")
+            bar_data = test_data.groupby('CreditScore')['spending_limit'].mean()
+            st.bar_chart(bar_data)
 
-        # Line chart
-        st.subheader("Line Chart")
-        st.write("Line chart showing Earnings vs. Earning Potential")
-        line_data = test_data[['earnings', 'earning_potential']]
-        st.line_chart(line_data)
+        if chart_selection == "Line Chart" or chart_selection == "None":
+            # Line chart
+            st.subheader("Line Chart")
+            st.write("Line chart showing Earnings vs. Earning Potential")
+            line_data = test_data[['earnings', 'earning_potential']]
+            st.line_chart(line_data)
 
-        # Histogram
-        st.subheader("Histogram")
-        st.write("Histogram of Spending Limit")
-        plt.figure(figsize=(8, 6))
-        plt.hist(test_data['spending_limit'], bins=20, color='green', alpha=0.7)
-        plt.xlabel("Spending Limit")
-        plt.ylabel("Frequency")
-        plt.title("Spending Limit Histogram")
-        st.pyplot(plt)
+        if chart_selection == "Histogram" or chart_selection == "None":
+            # Histogram
+            st.subheader("Histogram")
+            st.write("Histogram of Spending Limit")
+            plt.figure(figsize=(8, 6))
+            plt.hist(test_data['spending_limit'], bins=20, color='green', alpha=0.7)
+            plt.xlabel("Spending Limit")
+            plt.ylabel("Frequency")
+            plt.title("Spending Limit Histogram")
+            st.pyplot(plt)
 
 
         
