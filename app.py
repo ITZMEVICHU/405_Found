@@ -23,7 +23,7 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-st.image("logo.png", use_container_width=True)
+st.image("logo.png")
 
 # Title and description
 st.title("Spending Limit Predictor")
