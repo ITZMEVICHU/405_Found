@@ -145,4 +145,19 @@ elif menu_selection == "Visualization":
     else:
         st.warning("Please upload and process training data to generate visualizations.")
     # You can add your visualizations here.
+elif menu_selection == "ROI":
+    # ROI prediction and analysis section
+    st.header("ROI Prediction and Analysis")
+    
+    # Upload a CSV file with ROI-related data
+    uploaded_roi_data = st.file_uploader("Upload a CSV file with ROI-related data:", type=["csv"])
 
+    if uploaded_roi_data is not None:
+        roi_data = pd.read_csv(uploaded_roi_data)
+        
+        # Calculate ROI based on predicted spending limits and other relevant data
+        if 'predicted_spending_limit' in roi_data:
+            roi_data['ROI'] = (roi_data['predicted_spending_limit'] - roi_data['Cost']) / roi_data['Cost']
+        
+        st.subheader("ROI Data")
+        st.write(roi_data)
