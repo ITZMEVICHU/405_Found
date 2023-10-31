@@ -93,7 +93,7 @@ if menu_selection == "Problem Statement":
 
 elif menu_selection == "Visualization":
     # Visualization section
-    st.header("Visualizations")
+    st.header("Visualizations (upload the training data file)")
 
     # Upload Testing Data for Visualizations
     uploaded_test_file = st.file_uploader("Upload a CSV file for testing:", type=["csv"])
@@ -123,6 +123,6 @@ elif menu_selection == "Visualization":
         line_data = test_data[['earnings', 'earning_potential']]
         st.line_chart(line_data)
     else:
-        st.warning("Please upload and process testing data to generate visualizations.")
+        st.warning("Please upload and process training data to generate visualizations.")
     # You can add your visualizations here.
 
