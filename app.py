@@ -14,12 +14,16 @@ st.set_page_config(
 # Display the logo
 st.markdown(
     """
-    <div style="display: flex; justify-content: center;">
-        <img src='logo.png' alt="Logo" width="200">
-    </div>
+    <style>
+    div.stButton > button {
+        display: block;
+        margin: 0 auto;
+    }
+    </style>
     """,
     unsafe_allow_html=True,
 )
+st.image("logo.png", use_container_width=True)
 
 # Title and description
 st.title("Spending Limit Predictor")
