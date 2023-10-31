@@ -107,6 +107,17 @@ elif menu_selection == "ROI":
         
         st.subheader("ROI Data")
         st.write(roi_data)
+        
+        # Further analysis and visualization
+        st.subheader("ROI Analysis")
+        
+        # Example: Calculate average ROI
+        average_roi = roi_data['ROI'].mean()
+        st.write(f"Average ROI: {average_roi:.2%}")
+        
+        # Example: ROI visualization (bar chart)
+        st.subheader("ROI Visualization")
+        st.bar_chart(roi_data.groupby('Product')['ROI'].mean())
 
 elif menu_selection == "Visualization":
     # Visualization section
