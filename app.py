@@ -15,13 +15,6 @@ uploaded_train_file = st.file_uploader("Upload a CSV file for training:", type=[
 
 if uploaded_train_file is not None:
     # Display uploaded training data
-    with col2:
-        vAR_input_problem_type = st.selectbox(' ',['Select the Problem Statement','Customer Churn: Who is going to churn?','Customer Churn: When will the churn occur?','Customer Churn: Why does the churn occurs?'])
-    if vAR_input_problem_type == 'Customer Churn: Who is going to churn?':
-        with col1:
-            st.write("## ")
-            st.markdown("<p style='text-align: left; color: black; font-size:20px;'><span style='font-weight: bold'>Problem type</span></p>", unsafe_allow_html=True)
-
     st.write("Uploaded Training Data:")
     train_data = pd.read_csv(uploaded_train_file)
     st.write(train_data)
